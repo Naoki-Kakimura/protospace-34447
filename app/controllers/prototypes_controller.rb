@@ -21,7 +21,7 @@ class PrototypesController < ApplicationController
   end
   def edit
     @prototype = Prototype.find(params[:id])
-    unless current_user.id == @prototype.user.id
+    unless current_user.id == @prototype.user_id
       redirect_to action: :index
     end
   end
@@ -35,7 +35,7 @@ class PrototypesController < ApplicationController
   end
   def destroy
     prototype = Prototype.find(params[:id])
-    unless current_user.id == @prototype.user.id
+    unless current_user.id == prototype.user_id
       redirect_to action: :index
     end
     if prototype.destroy
